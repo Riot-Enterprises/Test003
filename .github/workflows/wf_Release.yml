@@ -29,17 +29,29 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - id: step1
+      - name: Display the path
         shell: pwsh
-        run: echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
-      - id: step2
-        uses: actions/checkout@v2
+        run: echo ${env:PATH}
+      - name: Version Display
+        shell: pwsh
+        run: $PSVersionTable
+      - name: Bootstrap
+        shell: pwsh
+        run: ./actions_bootstrap.ps1
+      - name: Test and Build
+        shell: pwsh
+        run: Invoke-Build -File .\src\Test003.build.ps1
+      - name: Get moduleversion
+        shell: pwsh
+        run: |
+          $manifestInfo = Import-PowerShellDataFile -Path ./src/Test003/Test003.psd1
+          echo "::set-output name=version::$($manifestInfo.ModuleVersion)"
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: ${{needs.job1.outputs.output2}}
+          custom_tag: $version
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v2.4.1
