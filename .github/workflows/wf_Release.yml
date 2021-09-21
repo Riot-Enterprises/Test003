@@ -22,7 +22,7 @@ jobs:
       - name: Test and Build
         shell: pwsh
         run: Invoke-Build -File .\src\Test003.build.ps1
-      - name: Get moduleversion
+      - name: Get_moduleversion
         shell: pwsh
         run: |
           $manifestInfo = Import-PowerShellDataFile -Path ./src/Test003/Test003.psd1
@@ -32,7 +32,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: $version
+          custom_tag: ${{ steps.Get_moduleversion.outputs.version }}
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v2.4.1
