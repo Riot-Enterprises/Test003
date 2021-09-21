@@ -51,4 +51,4 @@ jobs:
         env:
           NUGET_KEY: ${{ secrets.POSHTESTGALLERY_API }}
         shell: pwsh
-        run: Publish-Module -Repository 'PSTestGallery' -Path ./src/Artifacts/Test003.psd1 -NuGetApiKey $env:NUGET_KEY -Verbose
+        run: Publish-Module -Repository 'PSTestGallery' -Path ./src/Artifacts/ -NuGetApiKey $env:NUGET_KEY -Verbose
