@@ -4,7 +4,12 @@
 # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#using-a-specific-shell
 # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
 name: ActionsTest-Windows-Build
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '*'
+      - '!main'
+
 jobs:
   test:
     name: Run Tests windows-latest powershell
