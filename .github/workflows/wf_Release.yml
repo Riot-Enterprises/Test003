@@ -54,6 +54,6 @@ jobs:
         run: |
           New-Item ./src/Artifacts/Test003 -ItemType DIRECTORY
           Move-Item ./src/Artifacts/Test003.ps* ./src/Artifacts/Test003 -force
-          Move-Item ./src/Artifacts/en-US ./src/Artifacts/Test003 -Recurse -Force
+          Move-Item ./src/Artifacts/en-US ./src/Artifacts/Test003 -Force
           Get-ChildItem ./src/Artifacts/Test003
           Publish-Module -Repository 'PSTestGallery' -Path ./src/Artifacts/Test003 -NuGetApiKey $env:NUGET_KEY -Verbose
