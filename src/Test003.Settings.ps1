@@ -109,6 +109,7 @@ Add-BuildTask GenerateModuleVersion -Before FixManifest {
             $bumpVersionType = 'Major';
             Write-Build Red "Removed Feature:  $_"
         }
+        # enhancement
         $script:NewVersion = Step-Version -Version $script:PublishedModule.Version -By $bumpVersionType
         Write-Build Yellow "Published Version: $($script:PublishedModule.Version) $bumpVersiontype"
     }
