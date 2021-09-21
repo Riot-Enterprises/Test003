@@ -47,3 +47,8 @@ jobs:
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{steps.github_release.outputs.changelog}}
           artifacts: "./src/Archive/*"
+      - name: Publish to Powershell Gallery
+        env:
+          NUGET_KEY: ${{ secrets.POSHTESTGALLERY_API }}
+        shell: pwsh
+        run: Publish-Module -Repository 'PSTestGallery' -Path /src/Artifacts/Test003.psd1 -NuGetApiKey $env:NUGET_KEY -Verbose
