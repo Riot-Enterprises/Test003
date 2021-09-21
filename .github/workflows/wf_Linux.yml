@@ -5,7 +5,11 @@
 # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
 # https://github.com/actions/upload-artifact#where-does-the-upload-go
 name: ActionsTest-Linux-Build
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '*'
+      - '!main'
 jobs:
   test:
     name: Run Tests ubuntu-latest pwsh
