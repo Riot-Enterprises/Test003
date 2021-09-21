@@ -122,7 +122,7 @@ Add-BuildTask GenerateModuleVersion -Before FixManifest {
     if ($TagVersion){
         Write-Build Yellow "Git Tag Version: $Tagversion"
         if ($TagVersion -ge [Version]$script:NewVersion){
-            Write-Build 'Bumping Git Tag Version'
+            Write-Build Yellow 'Bumping Git Tag Version'
             $script:NewVersion = Step-Version -Version $TagVersion -By Patch
         }
     }
